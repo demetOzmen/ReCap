@@ -5,8 +5,10 @@ namespace Business.Abstract;
 public interface ICarService
 {
     List<Car> GetAll();
-    void Add(Car car );
-    void Update(Car car);
-    void Delete(Car car);
+    List<Car> GetAllByCategoryId(int id);
+    List<Car> GetAllByDailyPrice(decimal min, decimal max);
+    bool Add(Car car );
+    bool Update(Car car);
+    bool Delete(Car car);
 
 }
