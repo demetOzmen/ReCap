@@ -6,12 +6,12 @@ namespace DataAccess.Concrete.EntityFramework;
 
 public class EfBrandDal : IBrandDal
 {
-    public bool Add(Brand brand)
+    public bool Add(Brand entity)
     {
         throw new NotImplementedException();
     }
 
-    public bool Delete(Brand brand)
+    public bool Delete(Brand entity)
     {
         throw new NotImplementedException();
     }
@@ -21,7 +21,7 @@ public class EfBrandDal : IBrandDal
         throw new NotImplementedException();
     }
 
-    public List<Car> GetAll()
+    public List<Brand> GetAll()
     {
         throw new NotImplementedException();
     }
@@ -31,12 +31,12 @@ public class EfBrandDal : IBrandDal
         throw new NotImplementedException();
     }
 
-    public List<Car> GetAllById(int Id)
+    public List<Brand> GetAllById(int Id)
     {
         throw new NotImplementedException();
     }
 
-    public bool Update(Brand brand)
+    public bool Update(Brand entity)
     {
         throw new NotImplementedException();
     }

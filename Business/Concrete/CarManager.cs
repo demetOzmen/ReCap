@@ -33,13 +33,8 @@ public class CarManager : ICarService
         return carResult;
     }
 
-    public List<Car> GetAll()
-    {
-        throw new NotImplementedException();
-    }
 
-
-    public List<Car> GetAllByCategoryId(int id)
+    public List<Car> GetAllById(int id)
     {
         return _carDal.GetAll(p => p.Id == id);
 
@@ -58,5 +53,20 @@ public class CarManager : ICarService
             Console.WriteLine();
         }
         return carResult;
+    }
+
+    public List<Car> GetAll()
+    {
+        return _carDal.GetAll();
+    }
+
+    public List<Car> GetCarsByBrandId(int brandId)
+    {
+        return _carDal.GetAll(p => p.BrandId == brandId);
+    }
+
+    public List<Car> GetCarsByColorId(int colorId)
+    {
+        return _carDal.GetAll(p => p.ColorId == colorId);
     }
 }

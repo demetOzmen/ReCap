@@ -1,5 +1,6 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
+using Entities.Concrete;
 using Microsoft.Data.SqlClient;
 
 
@@ -9,4 +10,3 @@ CarManager carManager = new CarManager(new EfCarDal());
 	{
 		Console.WriteLine(car.Name, car.DailyPrice);
 	}
-
