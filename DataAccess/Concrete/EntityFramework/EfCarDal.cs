@@ -1,61 +1,33 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAccess.EntityFramework;
+using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace DataAccess.Concrete.EntityFramework;
 
-public class EfCarDal : ICarDal
+public class EfCarDal : EFEntityRepositoryBase<Car, GameGamerContext>, ICarDal
 {
-
-    public bool Add(Car entity)
+    public List<CarDetailDto> GetCarDetails()
     {
         using (GameGamerContext context = new GameGamerContext())
         {
-            var addedEntity = context.Entry(entity);
-            addedEntity.State = EntityState.Added;
-            context.SaveChanges();
-            return true;
+            var result = from car in context.Cars
+                         join color in context.Colors on car.ColorId equals color.Id
+                         join brand in context.Brands on car.BrandId equals brand.Id
+                         select new CarDetailDto
+                         {
+                             BrandId = car.BrandId,
+                             BrandName = brand.Name,
+                             ColorId = car.ColorId,
+                             ColorName = color.Name,
+                             CarId = car.Id,
+                             ModelYear = car.ModelYear,
+                             CarName = car.Name
+                         };
+            return result.ToList();
         }
-    }
-
-    public bool Delete(Car entity)
-    {
-        using (GameGamerContext context = new GameGamerContext())
-        {
-            var deletedEntity = context.Entry(entity);
-            deletedEntity.State = EntityState.Deleted;
-            context.SaveChanges();
-            return true;
-        }
-    }
-
-    public Car Get(Expression<Func<Car, bool>> filter)
-    {
-        using (GameGamerContext context = new GameGamerContext())
-        {
-            return context.Set<Car>().SingleOrDefault(filter);
-        }
-    }
-
-    public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
-    {
-        using (GameGamerContext contex = new GameGamerContext())
-        {
-            return filter == null
-                ? contex.Set<Car>().ToList()
-                : contex.Set<Car>().Where(filter).ToList();
-        }
-    }
-
-    public bool Update(Car entity)
-    {
-        using (GameGamerContext context = new GameGamerContext())
-        {
-            var updatedEntity = context.Entry(entity);
-            updatedEntity.State = EntityState.Modified;
-            context.SaveChanges();
-            return true;
-        }
+        
     }
 }

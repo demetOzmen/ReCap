@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAccess.EntityFramework;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace DataAccess.Concrete.EntityFramework;
 
-public class EfBrandDal : IBrandDal
+public class EfBrandDal : EFEntityRepositoryBase<Brand, GameGamerContext>,IBrandDal
 {
     public bool Add(Brand entity)
     {
