@@ -10,7 +10,7 @@ static void CarNameTest()
 
     foreach (var car in carManager.GetCarDetails())
     {
-        Console.WriteLine(car.CarName + "/"+ car.BrandName);
+        Console.WriteLine(car.CarName + "/"+ car.BrandName) ;
     }
 }
 
