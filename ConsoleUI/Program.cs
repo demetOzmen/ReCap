@@ -1,16 +1,25 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 
-CarNameTest();
+//CarNameTest();
 //ColorNameTest();
+CarTest();
 
 static void CarNameTest()
 {
     CarManager carManager = new CarManager(new EfCarDal());
+    var result = carManager.GetCarDetails();
 
-    foreach (var car in carManager.GetCarDetails())
+    foreach (var car in carManager.GetCarDetails().Data)
     {
-        Console.WriteLine(car.CarName + "/"+ car.BrandName) ;
+        if (car.CarName.Length < 3)
+        {
+            Console.WriteLine("isim en az 3 karakter olmalı");
+        }
+        else
+        {
+            Console.WriteLine(car.CarName);
+        }
     }
 }
 
@@ -23,3 +32,22 @@ static void ColorNameTest()
         Console.WriteLine(color.Name);
     }
 }
+
+static void CarTest()
+{
+    CarManager carManager = new CarManager(new EfCarDal());
+    var result = carManager.GetCarDetails();
+    if (result.Success == true)
+    {
+        foreach (var car in result.Data)
+        {
+            Console.WriteLine(car.CarName + "/" + car.CarId);
+        }
+    }
+    else
+    {
+        Console.WriteLine(result.Message);
+    }
+}
+
+

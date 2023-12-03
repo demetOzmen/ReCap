@@ -9,54 +9,53 @@ using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Concrete
+namespace Business.Concrete;
+
+public class ColorManager : IColorService
 {
-    public class ColorManager : IColorService
+    IColorDal _colorDal;
+
+    public ColorManager()
     {
-        IColorDal _colorDal;
+    }
 
-        public ColorManager()
-        {
-        }
+    public ColorManager(IColorDal colorDal)
+    {
+        _colorDal = colorDal;
+    }
 
-        public ColorManager(IColorDal colorDal)
+    public bool Add(Color color)
+    {
+        bool colorResult = _colorDal.Add(color);
+        if (colorResult == true)
         {
-            _colorDal = colorDal;
+            Console.WriteLine();
         }
+        return colorResult;
+    }
 
-        public bool Add(Color color)
+    public bool Delete(Color color)
+    {
+        bool colorResult = _colorDal.Delete(color);
+        if (colorResult == true)
         {
-            bool colorResult = _colorDal.Add(color);
-            if (colorResult == true)
-            {
-                Console.WriteLine();
-            }
-            return colorResult;
+            Console.WriteLine();
         }
+        return colorResult;
+    }
 
-        public bool Delete(Color color)
-        {
-            bool colorResult = _colorDal.Delete(color);
-            if (colorResult == true)
-            {
-                Console.WriteLine();
-            }
-            return colorResult;
-        }
+    public List<Color> GetAll()
+    {
+        return _colorDal.GetAll();
+    }
 
-        public List<Color> GetAll()
+    public bool Update(Color color)
+    {
+        bool colorResult = _colorDal.Update(color);
+        if (colorResult == true)
         {
-            return _colorDal.GetAll();
+            Console.WriteLine();
         }
-
-        public bool Update(Color color)
-        {
-            bool colorResult = _colorDal.Update(color);
-            if (colorResult == true)
-            {
-                Console.WriteLine();
-            }
-            return colorResult;
-        }
+        return colorResult;
     }
 }

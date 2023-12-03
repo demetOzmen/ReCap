@@ -5,13 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Abstract
+namespace Business.Abstract;
+
+public interface IBrandService
 {
-    public interface IBrandService
-    {
-        List<Brand> GetAll();
-        bool Add(Brand brand);
-        bool Update(Brand brand);
-        bool Delete(Brand brand);
-    }
+    List<Brand> GetAll();
+    bool Add(Brand brand);
+    bool Update(Brand brand);
+    bool Delete(Brand brand);
 }
