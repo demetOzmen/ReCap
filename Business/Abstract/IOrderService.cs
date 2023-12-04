@@ -1,9 +1,10 @@
-﻿using Entities.Concrete;
+﻿using Core.Utilities.Results;
+using Entities.Concrete;
 
 namespace Business.Abstract;
 
 public interface IOrderService
 {
-    List<Order> GetAll();
-    Order GetById(int id);
+    IDataResult<List<Order>> GetAll();
+    IDataResult<Order> GetById(int id);
 }

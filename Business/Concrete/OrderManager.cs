@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 
@@ -13,14 +14,14 @@ public class OrderManager : IOrderService
         _orderDal = orderDal;
     }
 
-    public List<Order> GetAll()
+    public IDataResult<List<Order>> GetAll()
     {
         //iş kodları
-        return _orderDal.GetAll();
+        return new SuccessDataResult<List<Order>>(_orderDal.GetAll());
     }
 
-    public Order GetById(int id)
+    public IDataResult<Order> GetById(int id)
     {
-        return _orderDal.Get(o => o.Id == id);
+        return new SuccessDataResult<Order>(_orderDal.Get(o => o.Id == id));
     }
 }

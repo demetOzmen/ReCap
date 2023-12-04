@@ -1,61 +1,54 @@
 ﻿using Business.Abstract;
+using Business.Constans;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
-using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concrete;
 
 public class ColorManager : IColorService
 {
     IColorDal _colorDal;
-
-    public ColorManager()
-    {
-    }
-
     public ColorManager(IColorDal colorDal)
     {
         _colorDal = colorDal;
     }
 
-    public bool Add(Color color)
+    public IResult Add(Color color)
     {
         bool colorResult = _colorDal.Add(color);
-        if (colorResult == true)
+        if (colorResult == false)
         {
-            Console.WriteLine();
+            return new ErrorResult(Messages.ColorNotAdded);
         }
-        return colorResult;
+        return new SuccessResult(Messages.ColorAdded);
     }
 
-    public bool Delete(Color color)
+    public IResult Delete(Color color)
     {
         bool colorResult = _colorDal.Delete(color);
-        if (colorResult == true)
+        if (colorResult == false)
         {
-            Console.WriteLine();
+            return new ErrorResult(Messages.ColorNotDeleted);
         }
-        return colorResult;
+        return new SuccessResult(Messages.ColorDeleted);
+
     }
 
-    public List<Color> GetAll()
+    public IDataResult<List<Color>> GetAll()
     {
-        return _colorDal.GetAll();
+        return (IDataResult<List<Color>>)_colorDal.GetAll();
     }
 
-    public bool Update(Color color)
+    public IResult Update(Color color)
     {
         bool colorResult = _colorDal.Update(color);
-        if (colorResult == true)
+        if (colorResult == false)
         {
-            Console.WriteLine();
+            return new ErrorResult(Messages.ColorNotUpdated);
+
         }
-        return colorResult;
+        return new SuccessResult(Messages.ColorUpdated);
+
     }
 }

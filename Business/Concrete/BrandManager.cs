@@ -1,13 +1,8 @@
 ﻿using Business.Abstract;
+using Business.Constans;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
-using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concrete;
 
@@ -19,39 +14,39 @@ public class BrandManager : IBrandService
         _brandDal = brandDal;
     }
 
-    public bool Add(Brand brand)
+    public IResult Add(Brand brand)
     {
         bool brandResult = _brandDal.Add(brand);
-        if (brandResult == true)
+        if (brandResult == false)
         {
-            Console.WriteLine();
+            return new ErrorResult(Messages.BrandNotAdded);
         }
-        return brandResult;
+        return new SuccessResult(Messages.BrandAdded);
     }
 
-    public bool Delete(Brand brand)
+    public IResult Delete(Brand brand)
     {
         bool brandResult = _brandDal.Delete(brand);
-        if (brandResult == true)
+        if (brandResult == false)
         {
-            Console.WriteLine();
+            return new ErrorResult(Messages.BrandNotDeleted);
         }
-        return brandResult;
+        return new SuccessResult(Messages.BrandDeleted);
     }
 
-    public List<Brand> GetAll()
+    public IDataResult<List<Brand>> GetAll()
     {
-        return _brandDal.GetAll();
+        return (IDataResult<List<Brand>>)_brandDal.GetAll();
     }
 
 
-    public bool Update(Brand brand)
+    public IResult Update(Brand brand)
     {
         bool brandResult = _brandDal.Update(brand);
-        if (brandResult == true)
+        if (brandResult == false)
         {
-            Console.WriteLine();
+            return new ErrorResult(Messages.BrandNotUpdated);
         }
-        return brandResult;
+        return new SuccessResult(Messages.BrandUpdated);
     }
 }

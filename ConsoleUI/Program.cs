@@ -1,9 +1,12 @@
 ﻿using Business.Concrete;
+using Core.Utilities.Results;
 using DataAccess.Concrete.EntityFramework;
+using Entities.Concrete;
+using Entities.DTOs;
 
 //CarNameTest();
 //ColorNameTest();
-CarTest();
+//CarTest();
 
 static void CarNameTest()
 {
@@ -23,31 +26,31 @@ static void CarNameTest()
     }
 }
 
-static void ColorNameTest()
-{
-    ColorManager colorManager = new ColorManager(new EfColorDal());
+//static void ColorNameTest()
+//{
+//    ColorManager colorManager = new ColorManager(new EfColorDal());
 
-    foreach (var color in colorManager.GetAll())
-    {
-        Console.WriteLine(color.Name);
-    }
-}
+//    foreach (var color in colorManager.IDataResult<List<Color>>.GetAll())
+//    {
+//        Console.WriteLine(color.Name);
+//    }
+//}
 
-static void CarTest()
-{
-    CarManager carManager = new CarManager(new EfCarDal());
-    var result = carManager.GetCarDetails();
-    if (result.Success == true)
-    {
-        foreach (var car in result.Data)
-        {
-            Console.WriteLine(car.CarName + "/" + car.CarId);
-        }
-    }
-    else
-    {
-        Console.WriteLine(result.Message);
-    }
-}
+//static void CarTest()
+//{
+//    CarManager carManager = new CarManager(new EfCarDal());
+//    var result = carManager.GetAll();
+//    if (result.Success == true)
+//    {
+//        foreach (var car in result.Message)
+//        {
+//            Console.WriteLine(Name + "/" +Id);
+//        }
+//    }
+//    else
+//    {
+//        Console.WriteLine(result.Message);
+//    }
+//}
 
 
