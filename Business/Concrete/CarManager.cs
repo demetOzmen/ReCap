@@ -20,6 +20,7 @@ public class CarManager : ICarService
 
     public IResult Add(Car car)
     {
+
         if (car.Name.Length < 2)
         {
             return new ErrorResult(Messages.CarNameInvalid);

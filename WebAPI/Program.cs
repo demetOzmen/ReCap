@@ -10,9 +10,11 @@ using Business.DependencyResolver.Autofac;
 using Autofac.Extensions.DependencyInjection;
 
 
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new AutofacBusinessModule()));
+
 
 
 
