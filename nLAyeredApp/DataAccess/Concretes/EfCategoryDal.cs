@@ -5,9 +5,9 @@ using Entities.Concretes;
 
 namespace DataAccess.Concretes
 {
-    public class EfProductDal : EfRepositoryBase<Product, int, NorthwindContext>, IProductDal
+    public class EfCategoryDal : EfRepositoryBase<Category, int, NorthwindContext>, ICategoryDal
     {
-        public EfProductDal(NorthwindContext context) : base(context)
+        public EfCategoryDal(NorthwindContext context) : base(context)
         {
         }
     }

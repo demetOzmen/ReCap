@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Core.DataAccess.Paging;
 
-namespace Core.DataAccess.Paging;
-
-public class Paginate<T>
+public class Paginate<T> : IPaginate<T>
 {
-   public Paginate(IEnumerable<T> source, int index, int size, int from)
+    public Paginate(IEnumerable<T> source, int index, int size, int from)
     {
         if (from > index)
             throw new ArgumentException($"indexFrom: {from.ToString()} > pageIndex: {index.ToString()}, must indexFrom <= pageIndex");
@@ -46,7 +40,7 @@ public class Paginate<T>
     public bool HasNext => Index - From + 1 < Pages;
 }
 
-public class Paginate<TSource, TResult> : Paginate<TResult>
+public class Paginate<TSource, TResult> : IPaginate<TResult>
 {
     public Paginate(IEnumerable<TSource> source, Func<IEnumerable<TSource>, IEnumerable<TResult>> converter, int index, int size, int from)
     {
@@ -73,7 +67,7 @@ public class Paginate<TSource, TResult> : Paginate<TResult>
         }
     }
 
-    public Paginate(Paginate<TSource> source, Func<IEnumerable<TSource>, IEnumerable<TResult>> converter)
+    public Paginate(IPaginate<TSource> source, Func<IEnumerable<TSource>, IEnumerable<TResult>> converter)
     {
         Index = source.Index;
         Size = source.Size;
@@ -99,4 +93,14 @@ public class Paginate<TSource, TResult> : Paginate<TResult>
     public bool HasPrevious => Index - From > 0;
 
     public bool HasNext => Index - From + 1 < Pages;
+}
+
+public static class Paginate
+{
+    public static IPaginate<T> Empty<T>() => new Paginate<T>();
+
+    public static IPaginate<TResult> From<TResult, TSource>(
+        IPaginate<TSource> source,
+        Func<IEnumerable<TSource>, IEnumerable<TResult>> converter
+    ) => new Paginate<TSource, TResult>(source, converter);
 }

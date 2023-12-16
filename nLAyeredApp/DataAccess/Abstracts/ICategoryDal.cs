@@ -3,7 +3,10 @@ using Entities.Concretes;
 
 namespace DataAccess.Abstracts
 {
-    public interface IProductDal : IRepository<Product, int>, IAsyncRepository<Product, int>
+    public interface ICategoryDal : IRepository<Category, int>, IAsyncRepository<Category, int>
     {
+
     }
+
+
 }

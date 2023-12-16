@@ -1,8 +1,8 @@
-using Business;
+using Core;
+using Core.CrossCuttingConcerns.Exceptions.Extensions;
 using DataAccess;
+
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddBusinessServices();
-builder.Services.AddDataAccessServices(builder.Configuration);
 
 // Add services to the container.
 builder.Services.AddBusinessServices();
@@ -21,7 +21,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.ConfigureCustomExceptionMiddleware();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -1,34 +1,36 @@
-﻿using Business.Abstracts;
-using Business.Dtos.Requests;
-using Entities.Concretes;
-using Microsoft.AspNetCore.Http;
+﻿using Core.Abstracts;
+using Core.Dtos.Requests;
+using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebAPI.Controllers;
-
-[Route("api/[controller]")]
-[ApiController]
-
-public class ProductsController : ControllerBase
+namespace WebApi.Controllers
 {
-    IProductService _productService;
-
-    public ProductsController(IProductService productService)
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ProductsController : ControllerBase
     {
-        _productService = productService;
-    }
-    [HttpPost]
+        IProductService _productService;
 
-    public async Task<IActionResult> Add([FromBody] CreateProductRequest createProductRequest)
-    {
-        var result = await _productService.Add(createProductRequest);
-        return Ok(result);
-    }
+        public ProductsController(IProductService productService)
+        {
+            _productService = productService;
+        }
 
-    [HttpGet]
-    public async Task<IActionResult> GetList()
-    {
-        var result = await _productService.GetListAsync();
-        return Ok(result);
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody] CreateProductRequest createProductRequest)
+        {
+            var result = await _productService.Add(createProductRequest);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
+        {
+            var result = await _productService.GetListAsync(pageRequest);
+            return Ok(result);
+        }
     }
 }
+
+
+//postrequest-->productsController:add-->business....
