@@ -1,13 +1,10 @@
 using Autofac;
-using Business.Abstract;
-using Business.Concrete;
+using Autofac.Extensions.DependencyInjection;
 using Business.Abstract;
 using Business.Concrete;
 using Business.DependencyResolver.Autofac;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
-using Business.DependencyResolver.Autofac;
-using Autofac.Extensions.DependencyInjection;
 
 
 
