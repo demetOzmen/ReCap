@@ -9,9 +9,10 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Concrete.EntityFramework;
-
-public class EfColorDal : EFEntityRepositoryBase<Color, ReCapContext>, IColorDal
+namespace DataAccess.Concrete.EntityFramework
 {
+    public class EfCustomerDal : EFEntityRepositoryBase<Customer, ReCapContext>, ICustomerDal
+    {
 
+    }
 }

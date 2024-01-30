@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace Core.DataAccess.EntityFramework;
 
-public class EFEntityRepositoryBase<TEntity, TContext>:IEntityRepository<TEntity>
+public class EFEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity>
     where TEntity : class, IEntity, new()
     where TContext : DbContext, new()
 {
@@ -17,6 +17,16 @@ public class EFEntityRepositoryBase<TEntity, TContext>:IEntityRepository<TEntity
             context.SaveChanges();
             return true;
         }
+    }
+
+    public TEntity AddGet(TEntity entity)
+    {
+        using var context = new TContext();
+        var addedEntity = context.Entry(entity);
+        addedEntity.State = EntityState.Added;
+        context.SaveChanges();
+
+        return addedEntity.Entity;
     }
 
     public bool Delete(TEntity entity)

@@ -72,4 +72,9 @@ public class InMemoryCarDal : ICarDal
     {
         throw new NotImplementedException();
     }
+
+    public Car AddGet(Car entity)
+    {
+        throw new NotImplementedException();
+    }
 }

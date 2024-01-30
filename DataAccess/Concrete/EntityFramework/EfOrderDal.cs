@@ -4,6 +4,6 @@ using Entities.Concrete;
 
 namespace DataAccess.Concrete.EntityFramework;
 
-public class EfOrderDal: EFEntityRepositoryBase<Order,GameGamerContext>, IOrderDal
+public class EfOrderDal: EFEntityRepositoryBase<Order,ReCapContext>, IOrderDal
 {
 }

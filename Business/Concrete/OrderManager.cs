@@ -14,6 +14,16 @@ public class OrderManager : IOrderService
         _orderDal = orderDal;
     }
 
+    public IResult Add(Order order)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IResult Delete(int id)
+    {
+        throw new NotImplementedException();
+    }
+
     public IDataResult<List<Order>> GetAll()
     {
         //iş kodları
@@ -23,5 +33,10 @@ public class OrderManager : IOrderService
     public IDataResult<Order> GetById(int id)
     {
         return new SuccessDataResult<Order>(_orderDal.Get(o => o.Id == id));
+    }
+
+    public IResult Update(Order order)
+    {
+        throw new NotImplementedException();
     }
 }

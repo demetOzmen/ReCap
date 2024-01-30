@@ -2,6 +2,7 @@
 using Business.Constans;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 
 namespace Business.Concrete;
@@ -39,6 +40,18 @@ public class BrandManager : IBrandService
         return (IDataResult<List<Brand>>)_brandDal.GetAll();
     }
 
+    public IDataResult<Brand> GetById(int id)
+    {
+        var brand = _brandDal.Get(b => b.Id == id);
+        if (brand != null)
+        {
+            return new SuccessDataResult<Brand>(brand);
+        }
+        else
+        {
+            return new ErrorDataResult<Brand>("Brand not found");
+        }
+    }
 
     public IResult Update(Brand brand)
     {

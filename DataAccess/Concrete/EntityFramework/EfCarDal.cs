@@ -7,11 +7,11 @@ using System.Linq.Expressions;
 
 namespace DataAccess.Concrete.EntityFramework;
 
-public class EfCarDal : EFEntityRepositoryBase<Car, GameGamerContext>, ICarDal
+public class EfCarDal : EFEntityRepositoryBase<Car, ReCapContext>, ICarDal
 {
     public List<CarDetailDto> GetCarDetails()
     {
-        using (GameGamerContext context = new GameGamerContext())
+        using (ReCapContext context = new ReCapContext())
         {
             var result = from car in context.Cars
                          join color in context.Colors on car.ColorId equals color.Id

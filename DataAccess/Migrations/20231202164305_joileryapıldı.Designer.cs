@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
-    [DbContext(typeof(GameGamerContext))]
+    [DbContext(typeof(ReCapContext))]
     [Migration("20231202164305_joileryapıldı")]
     partial class joileryapıldı
     {

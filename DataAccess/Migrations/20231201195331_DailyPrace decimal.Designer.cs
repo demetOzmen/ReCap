@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
-    [DbContext(typeof(GameGamerContext))]
+    [DbContext(typeof(ReCapContext))]
     [Migration("20231201195331_DailyPrace decimal")]
     partial class DailyPracedecimal
     {

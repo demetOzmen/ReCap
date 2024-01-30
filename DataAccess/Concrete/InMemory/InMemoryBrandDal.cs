@@ -11,6 +11,11 @@ public class InMemoryBrandDal : IBrandDal
         throw new NotImplementedException();
     }
 
+    public Brand AddGet(Brand entity)
+    {
+        throw new NotImplementedException();
+    }
+
     public bool Delete(Brand brand)
     {
         throw new NotImplementedException();
