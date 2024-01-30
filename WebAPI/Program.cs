@@ -15,13 +15,16 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterMod
 
 
 
-// Add services to the container.
+// Add services to the container. autofac (Ioc)
+//AOP 
 
 builder.Services.AddControllers();
 builder.Services.AddSingleton<ICarService, CarManager>();
 builder.Services.AddSingleton<ICarDal, EfCarDal>();
 builder.Services.AddSingleton<ICustomerService, CustomerManager>();
 builder.Services.AddSingleton<ICustomerDal, EfCustomerDal>();
+builder.Services.AddSingleton<IBrandService, BrandManager>();
+builder.Services.AddSingleton<IBrandDal, EfBrandDal>();
 builder.Host.ConfigureContainer<ContainerBuilder>(myBuilder => myBuilder.RegisterModule(new AutofacBusinessModule()));
 
 
